@@ -1,0 +1,130 @@
+.todos {
+    margin-top: 3em;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    // &:hover {
+    //     .item {
+    //         filter: blur(2px);
+
+    //         &:hover {
+    //             filter: blur(0px);
+    //         }
+    //     }
+    // }
+
+    .item {
+        margin-top: 1.3em;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 10px 15px;
+        background: white;
+        border: 1px solid transparent;
+        border-radius: 5px;
+        box-shadow: 0 2px 10px 1px rgba($color: black, $alpha: .05);
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        transition: .2s;
+
+        &-input {
+            width: auto !important;
+        }
+
+        &:hover {
+            border: 1px solid #ccc;
+            transform: scale(1.03);
+            box-shadow: 0 5px 15px 5px rgba($color: black, $alpha: .07);
+            // transform: translateY(-5px);
+        }
+
+        .btn {
+            height: 40px;
+            width: 40px;
+            background: transparent;
+            border: none;
+            outline: none;
+            cursor: pointer;
+
+            svg {
+                height: 100%;
+                width: 100%;
+                fill: transparent;
+                transition: .4s;
+
+                path {
+                    stroke: rgb(156, 156, 156) !important;
+                }
+            }
+
+            &--edit:hover {
+                svg {
+                    fill: rgb(255, 196, 0);
+
+                    path {
+                        stroke: black !important;
+                    }
+                }
+            }
+
+            &--delete:hover {
+                svg {
+                    fill: rgb(255, 104, 104);
+
+                    path {
+                        stroke: black !important;
+                    }
+                }
+            }
+
+            &:first-of-type {
+                margin-left: auto;
+                margin-right: 10px;
+            }
+        }
+    }
+
+    &--unsolved, &--resolved {
+        width: 100%;
+    }
+
+    &--resolved {
+        .item {
+            &-text {
+                color: #ccc;
+                text-decoration: line-through;
+            }
+        }
+    }
+
+    &--empty{
+        margin-top: 3em;
+        max-width: 100px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        svg {
+            fill: rgb(182, 182, 182);
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        span {
+            margin-top: 1em;
+            font-size: 1.3em;
+            color: rgb(155, 155, 155);
+        }
+    }
+}
+
+hr {
+    margin-top: 1.3em;
+    border: none;
+    border-bottom: 1px solid rgba($color: #cccccc, $alpha: .4);
+    height: 0;
+    width: 100%;
+}
