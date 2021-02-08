@@ -6,5 +6,6 @@ export const StoreContext = createContext({
     onAddItem: (e) => {},
     onRemoveItem: (id) => {},
     onKeyDownInput: (e) => {},
-    onChangeCheckedItem: (id) => {}
+    onToggleItem: (id) => {},
+    onChangeItem: (id, value) => {}
 });

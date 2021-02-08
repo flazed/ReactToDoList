@@ -1,14 +1,15 @@
-import { useReducer, useEffect } from 'react';
+import { useReducer, useEffect, useContext } from 'react';
 import { InputReducer } from './../../reducers/inputReducer';
 import { CHANGE_INPUT, CLEAR_INPUT } from './../../types/input.types';
 import { ListReducer } from './../../reducers/listReducer';
-import { ADD_ITEM, REMOVE_ITEM, CHANGE_ITEM, CHANGE_CHECKED_ITEM} from './../../types/list.types';
+import { ADD_ITEM, REMOVE_ITEM, CHANGE_ITEM, TOGGLE_ITEM} from './../../types/list.types';
+import { ModalContext } from './../../contexts/modal/modal.context';
 
 const Store = () => {
     const [input, inputDispatch] = useReducer(InputReducer, '');
-
     const [list, listDispatch] = useReducer(ListReducer, localStorage.getItem('todos') ? JSON.parse(localStorage.getItem('todos')) : []);
 
+    const modal = useContext(ModalContext);
 
     const getState = () => {
         return {input, list};
@@ -59,15 +60,25 @@ const Store = () => {
         })
     }
 
-    const onChangeCheckedItem = (id) => {
+    const onToggleItem = (id) => {
         listDispatch({
-            type: CHANGE_CHECKED_ITEM,
+            type: TOGGLE_ITEM,
             payload: id
         })
     }
 
+    const onChangeItem = (id, value) => {
+        if(value) {
+            listDispatch({
+                type: CHANGE_ITEM,
+                payload: {id, value}
+            })
+            modal.hide();
+        }
+    }
 
-    return {getState, onChangeInput, onAddItem, onRemoveItem, onKeyDownInput, onChangeCheckedItem}
+
+    return {getState, onChangeInput, onAddItem, onRemoveItem, onKeyDownInput, onToggleItem, onChangeItem}
 }
 
 export default Store;

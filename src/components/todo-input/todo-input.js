@@ -1,4 +1,4 @@
-import { useEffect, useContext } from 'react';
+import { useContext } from 'react';
 import { StoreContext } from './../../contexts/storage/store.context';
 import './todo-input.scss';
 
