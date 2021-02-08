@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { ModalContext } from './modal.context';
 
 export const Modal = ({children}) => {
@@ -7,10 +7,6 @@ export const Modal = ({children}) => {
         id:     null,
         value:  ''
     });
-
-    // useEffect(()=> {
-    //     console.log(getState())
-    // })
 
     const getState = () => {
         return modal
