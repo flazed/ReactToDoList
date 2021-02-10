@@ -8,6 +8,8 @@ import './todo-list.scss';
 export const TodoList = () => {    
     const store = useContext(StoreContext);   
     const modal = useContext(ModalContext);
+
+    modal.getState().turnOn ? document.body.classList.add('edit') : document.body.classList.remove('edit');
     
     const createTodoItem = (item) => {
         return (
